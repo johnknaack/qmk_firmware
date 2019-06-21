@@ -242,7 +242,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case NAQP1:
       if (record->event.pressed) {
-        SEND_STRING("r3d90ph3r");
+        SEND_STRING("");
       }
       return false;
       break;
