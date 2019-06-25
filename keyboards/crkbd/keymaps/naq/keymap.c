@@ -33,7 +33,10 @@ enum custom_keycodes {
   ADJUST,
   BACKLIT,
   RGBRST,
-  NAQP1  
+  NAQP1,
+  NAQP2,
+  NAQP3,
+  NAQP4
 };
 
 enum macro_keycodes {
@@ -58,6 +61,9 @@ enum macro_keycodes {
 #define KC_GUIEI GUI_T(KC_LANG2)
 #define KC_ALTKN ALT_T(KC_LANG1)
 #define KC_NAQP1 NAQP1
+#define KC_NAQP2 NAQP2
+#define KC_NAQP3 NAQP3
+#define KC_NAQP4 NAQP4
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_kc( \
@@ -90,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       CTLTB, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   MINS,   EQL,  LCBR,  RCBR,  PIPE,   GRV,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT, NAQP1, XXXXX, XXXXX, XXXXX, XXXXX,                   UNDS,  PLUS,  LBRC,  RBRC,  BSLS,  TILD,\
+       LSFT, NAQP1, NAQP2, NAQP3, NAQP4, XXXXX,                   UNDS,  PLUS,  LBRC,  RBRC,  BSLS,  TILD,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   GUIEI, LOWER,   SPC,      ENT, RAISE, ALTKN \
                               //`--------------------'  `--------------------'
@@ -241,6 +247,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       #endif
       break;
     case NAQP1:
+      if (record->event.pressed) {
+        SEND_STRING("");
+      }
+      return false;
+      break;
+    case NAQP2:
+      if (record->event.pressed) {
+        SEND_STRING("");
+      }
+      return false;
+      break;
+    case NAQP3:
+      if (record->event.pressed) {
+        SEND_STRING("");
+      }
+      return false;
+      break;
+    case NAQP4:
       if (record->event.pressed) {
         SEND_STRING("");
       }
