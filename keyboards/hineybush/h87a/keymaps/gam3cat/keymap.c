@@ -12,21 +12,21 @@ enum layers {
 };
 
 enum custom_keycodes {
-    DYNAMIC_MACRO_RANGE = SAFE_RANGE,
-    QMK_REV,
+    QMK_REV = SAFE_RANGE,
     KC_WEB,
-    KC_SP4
+    KC_SP4,
+    DYNAMIC_MACRO_RANGE
 };
 
 extern backlight_config_t backlight_config;
 
 #include "dynamic_macro.h"
 #define FN_CAPS LT(_FL, KC_CAPS)
-#define KC_DMR1 DYN_REC_START1
-#define KC_DMR2 DYN_REC_START2
-#define KC_DMP1 DYN_MACRO_PLAY1
-#define KC_DMP2 DYN_MACRO_PLAY2
-#define KC_DMRS DYN_REC_STOP
+#define KC_DMR1 DM_REC1
+#define KC_DMR2 DM_REC2
+#define KC_DMP1 DM_PLY1
+#define KC_DMP2 DM_PLY2
+#define KC_DMRS DM_RSTP
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*#### _BL: Base Layer - Standard TKL QWERTY layout.
@@ -45,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *    *-----------------------------------------------------------------------*
     */
     [_BL] = LAYOUT_all( \
-        KC_ESC,           KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,           KC_PSCR, KC_SLCK, KC_PAUS, \
+        KC_ESC,           KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,           KC_PSCR, KC_SCRL, KC_PAUS, \
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_BSPC, KC_INS,  KC_HOME, KC_PGUP, \
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,          KC_DEL,  KC_END,  KC_PGDN, \
         KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, XXXXXXX, KC_ENT,                                      \
@@ -183,8 +183,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *    *-----------------------------------------------------------------------*
     */
     [_AL] = LAYOUT_all( \
-        RESET,            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, \
-        QMK_REV, RGB_TOG, RGB_MOD, RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, RGB_VAD, RGB_VAI, XXXXXXX, BL_TOGG, BL_DEC,  BL_INC,  XXXXXXX, XXXXXXX, XXXXXXX, KC_DMR1, KC_DMP1, \
+        QK_BOOT,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, \
+        QMK_REV, RGB_TOG, RGB_MOD, RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, RGB_VAD, RGB_VAI, XXXXXXX, BL_TOGG, BL_DOWN, BL_UP,   XXXXXXX, XXXXXXX, XXXXXXX, KC_DMR1, KC_DMP1, \
         _______, DF(_BL), DF(_WL), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          KC_DMRS, KC_DMR2, KC_DMP2, \
         XXXXXXX, XXXXXXX, XXXXXXX, DF(_DL), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                     \
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DF(_CL), XXXXXXX, DF(_BL), DF(_NL), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,                   XXXXXXX,          \
@@ -244,8 +244,8 @@ void matrix_scan_user(void) {
 
 }
 
-uint32_t layer_state_set_user(uint32_t state) {
-    switch (biton32(state)) {
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
         case _BL:
             custom_backlight_level(0);
             rgblight_sethsv_noeeprom(180,100,255);
@@ -259,11 +259,11 @@ uint32_t layer_state_set_user(uint32_t state) {
             break;
         case _FL:
             custom_backlight_level(2);
-            rgblight_sethsv_noeeprom(280,255,255);
+            rgblight_sethsv_noeeprom(240,255,255);
             break;
         case _AL:
             custom_backlight_level(3);
-            rgblight_sethsv_noeeprom(350,255,255);
+            rgblight_sethsv_noeeprom(255,255,255);
             break;
         default:
             custom_backlight_level(0);

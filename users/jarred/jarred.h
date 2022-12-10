@@ -50,6 +50,7 @@ enum {
 
 // Wrappers
 #define LAYOUT_planck_grid_wrapper(...)      LAYOUT_planck_grid(__VA_ARGS__)
+#define LAYOUT_plaid_grid_wrapper(...)      LAYOUT_plaid_grid(__VA_ARGS__)
 #define LAYOUT_atreus62_grid_wrapper(...)      LAYOUT(__VA_ARGS__)
 #define LAYOUT_ergotravel_grid_wrapper(...)      LAYOUT(__VA_ARGS__)
 
@@ -109,7 +110,7 @@ enum {
 #define NUMPAD_L3  _______, _______, _______, _______, RGB_VAD, RGB_VAI
 #define NUMPAD_L4  _______, _______, _______, _______, RGB_SPD, RGB_SPI
 
-#define NUMPAD_R1                                                        DF(_QW),DF(_GAME), _______, _______, _______,   RESET
+#define NUMPAD_R1                                                        DF(_QW),DF(_GAME), _______, _______, _______, QK_BOOT
 #define NUMPAD_R2                                                        _______, _______, _______, _______, _______, _______
 #define NUMPAD_R3                                                           VRSN, _______, _______, _______, _______, _______ 
 #define NUMPAD_R4                                                        _______, _______, _______, _______, _______, _______ 

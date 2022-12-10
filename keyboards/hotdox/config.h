@@ -2,15 +2,6 @@
 
 #include "config_common.h"
 
-/* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0xE11D
-
-#define DEVICE_VER      0x0001
-#define MANUFACTURER    Z.P.Z.O.
-#define PRODUCT         HotDox
-#define DESCRIPTION     QMK keyboard firmware for HotDox
-
 /* key matrix size */
 #define MATRIX_ROWS 6
 #define MATRIX_COLS 14
@@ -72,7 +63,5 @@
 //#define NO_ACTION_LAYER
 //#define NO_ACTION_TAPPING
 //#define NO_ACTION_ONESHOT
-//#define NO_ACTION_MACRO
-//#define NO_ACTION_FUNCTION
-//#define DEBUG_MATRIX_SCAN_RATE
 
+//#define DEBUG_MATRIX_SCAN_RATE
