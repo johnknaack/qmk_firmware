@@ -248,25 +248,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case NAQP1:
       if (record->event.pressed) {
-        SEND_STRING("");
+        SEND_STRING("r3d90ph3r");
       }
       return false;
       break;
     case NAQP2:
       if (record->event.pressed) {
-        SEND_STRING("");
+        SEND_STRING("d3v$r0ck");
       }
       return false;
       break;
     case NAQP3:
       if (record->event.pressed) {
-        SEND_STRING("");
+        SEND_STRING("p1nkP@nda");
       }
       return false;
       break;
     case NAQP4:
       if (record->event.pressed) {
-        SEND_STRING("");
+        SEND_STRING("watashin0M@ria");
       }
       return false;
       break;
